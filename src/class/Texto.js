@@ -11,7 +11,7 @@ class Texto extends Criptografador {
     criptografar() {
 
         if (this.crip === "" || typeof(this.crip) === "undefined") return "\x1b[31mAlerta:\x1b[0m Não pode ser criptografado uma string vazia."
-        if (!isNaN(parseInt(this.crip)) || (typeof(this.crip) !== "string" && typeof(this.crip) === "number")) return "\x1b[31mErro:\x1b[0m Não pode ser criptografado um número."
+        if (!/[a-zA-Z]/.test(this.crip)) return "\x1b[31mErro:\x1b[0m Números não podem ser criptografados."
 
         let stack = false
 
@@ -31,7 +31,9 @@ class Texto extends Criptografador {
             this.#textoCriptografado += `${selectedArray[newRandomNumber]}`
         }
 
-        return Divide.setDivision(this.#textoCriptografado)
+        console.log("Criptografia realizada com \x1b[32msucesso\x1b[0m!\n")
+
+        return `Criptografia: \x1b[33m${Divide.setDivision(this.#textoCriptografado)}\x1b[0m\n`
     }
 }
 
